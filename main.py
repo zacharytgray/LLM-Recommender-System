@@ -22,6 +22,7 @@ class Conversation:
                 print(f"{Fore.YELLOW}Ending conversation.{Fore.RESET}")
                 # Print agent's memory before exiting
                 # self.host.printMemory()
+                self.host.save_agent_profile() # Save the profile on quit
                 break
 
             if user_input:
