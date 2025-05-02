@@ -1,0 +1,34 @@
+This is my research project about a new, original recommender system architecture. 
+
+The idea is this: 
+
+	I want an LLM-powered recommender system that leverages a full conversation between it and a human to extract information about their preferences for a given data item, depending on the dataset. The dataset, in theory, should be able to contain anything (be expendable to any recommendation category easily), but for now assume it's movies. So, the LLM would converse with a human about anything, even having normal chit chat, and log information about their preferences for movies (in this case) that they may have made (like genres they generally like, actors they like, etc) in the middle of a conversation. Then, when the user asks for a, say, movie recommendation, the LLM generates a query for the recommender system (using query information it's given in the system settings) using all of the stored information about the user's preferences for movies. 
+	This architecture should, at the core, be a standard Recommender System with standard queries. The LLM itself should not generate the recommendations. It should capture the small things about movies we find in natural language, and use that to generate a thoughtful query to a recommender system.
+	To put it another way, the LLM acts as a wrapper around the recommender system, translating natural language and chat history into nuanced queries for the recommender system when requested by the user. Obviously, this step is the challenge. 
+
+Help me get started planning this project. I'm feeling kind of overwhelmed, but I have experience coding LLMs via langchain in python. I'm thinking I want to use a local LLM via Ollama. Do not actually implement anything. I'm just trying to conceptualize the architecture for now.
+
+For this project, I will be using LangChain with Ollama for local LLM usage. I will be coding in Python.
+
+
+Here are the specific components needed to make this system work:
+
+1. User Interaction Layer
+Purpose: This is where the human interacts naturally with the system—having casual conversations, making direct requests, or passively revealing preferences through discussion.
+Tools/Tech: Use LangChain with a local LLM via Ollama.
+
+2. Context / Memory Layer
+Purpose: Stores user-specific context and long-term memory from the conversation. This could include genres they mention liking, actors they dislike, specific preferences, and so on.
+Tools/Tech: Can use LangChain’s memory modules for recent dialogue and a structured storage mechanism (like JSON) to hold longer-term profiles.
+
+3. Query Translator Layer
+Purpose: When the user explicitly asks for a recommendation, this component takes the stored user preferences and translates them into a structured query the recommender system understands.
+Tools/Tech: Use prompt engineering or a rule-based system to format appropriate recommender system queries, taking into account both the current request and the user profile information.
+
+4. Recommender System Layer
+Purpose: This is the core engine that takes in a structured query (generated in component 3) and returns ranked items from a dataset (e.g., movies). It handles filtering, similarity calculations, collaborative filtering, etc.
+Tools/Tech: Could be a custom system built for MovieLens data.
+
+5. Response Formatter Layer
+Purpose: Takes the results from the recommender system and wraps them in a conversational response that fits naturally into the chat context. This helps keep the LLM-human interaction fluid and human-like.
+Tools/Tech: Use the LLM to convert raw results into friendly, personalized suggestions (e.g., “You might like The Prestige — it’s a mind-bending thriller you’d probably enjoy!”).
